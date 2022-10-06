@@ -19,7 +19,7 @@ public class UserResource {
     //annotations
     @GetMapping
     public ResponseEntity<User> procurarTodos() {
-        User u = new User(1L, "Artur", "artur@gmail.com", "73988160180", "12345");
+        User u = new User(1L, "Artur", "artur@gmail.com", "999999", "12345");
         return ResponseEntity.ok().body(u);
     }
 
