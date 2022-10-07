@@ -10,12 +10,12 @@ import java.util.Optional;
 
 //@Component //registra a sua classe como um componente do Spring
 @Service
-public class UserService {
+public class  UserService {
 
-    @Autowired//infejeção de dependencia das classes
+    @Autowired//infejeção de dependencia do Service para a classe Controller
     private UserRepository repository;
 
-    public List<User> findAll(){ //buscar todos os users
+    public List<User> findAll(){ //buscar todos os users, exemplo de endPoints
         return repository.findAll();
     }
 
