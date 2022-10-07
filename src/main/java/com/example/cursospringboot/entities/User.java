@@ -23,7 +23,7 @@ public class User implements Serializable {
 
     @JsonIgnore//biblioteca de serealização do Json.. Annotation para
     @OneToMany(mappedBy = "client")//annotation para associar muitos para um.
-    private List<Order> orders = new ArrayList<>(); //instanciando as coleção na lista de pedidos.
+    private List<Order> orders = new ArrayList<>(); //instanciando as coleção na lista de pedidos. Esse 1 para muitos estao mapeado com o nome client
 
     public User() {
     }
