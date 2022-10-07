@@ -1,5 +1,7 @@
 package com.example.cursospringboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity//Mapeamento de conversão dos objetos para um modelo relacional
-@Table(name = "users")
+@Table(name = "tb_users")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -19,6 +21,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore//biblioteca de serealização do Json.. Annotation para
     @OneToMany(mappedBy = "client")//annotation para associar muitos para um.
     private List<Order> orders = new ArrayList<>(); //instanciando as coleção na lista de pedidos.
 
