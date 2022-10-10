@@ -1,5 +1,7 @@
 package com.example.cursospringboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,7 +18,9 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient//impede que o JPA tente interpretar o erro do SET
+    //@Transient impede que o JPA tente interpretar o erro do SET
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")//copia o mapeamento feito na outra classe producto, nome da coleção é o categoria
     private Set<Product> products = new HashSet<>();
 
     public Category() {
