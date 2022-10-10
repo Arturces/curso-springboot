@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -27,6 +29,10 @@ public class Order implements Serializable {
     @ManyToOne //annotation para fazer a chave estrategeria na base de dados do JPA de um para um.
     @JoinColumn(name = "client_id")
     private User client; //associação de um pedido tem um cliente
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
+
 
     public Order(){
     }
@@ -70,6 +76,10 @@ public class Order implements Serializable {
         if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     @Override

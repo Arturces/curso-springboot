@@ -1,6 +1,7 @@
 package com.example.cursospringboot.entities;
 
 import com.example.cursospringboot.entities.pkcompost.OrderItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -10,11 +11,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_order_item")
-public class OrderItem implements Serializable {
+public class OrderItem implements Serializable { // classe auxiliar composto que precisa ser instanciada
     private static final long serialVersionUID = -1914443981767274525L;
 
     @EmbeddedId
-    private OrderItemPk id;
+    private OrderItemPk id = new OrderItemPk();
 
     private Integer quantity;
     private Double price;
@@ -29,6 +30,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
