@@ -20,7 +20,7 @@ public class  UserService {
     }
 
     public User findById(Long id){
-       Optional<User> obj = repository.findById(id); //Retorna um Optional com o valor fornecido
+       Optional<User> obj = repository.findById(id); //Retorna um Optional com o valor fornecido, ja retornar o OBJ do banco
        return obj.get();
     }
 
@@ -32,4 +32,15 @@ public class  UserService {
         repository.deleteById(id);
     }
 
+    public User update(Long id, User obj){
+        User entity = repository.getOne(id);//prepara o objeto monitorado, somente pra vc mexer e depois alterar no banco
+        updateData(entity,obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+    }
 }
