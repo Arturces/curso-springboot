@@ -36,10 +36,10 @@ public class Order implements Serializable {
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)//mapeamente de pagamento em relação ao pedido
     private Payment payment;
 
-    public Order(){
+    public Order() {
     }
 
-    public Order(Long id, Instant moment,OrderStatus orderStatus, User client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
         setOrderStatus(orderStatus);
@@ -90,6 +90,14 @@ public class Order implements Serializable {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Double getToal() {//padrao java EE get no começo
+        double soma = 0.0;
+        for (OrderItem x : items) { //para todo item de pedido, soma recebe ela mais o subtotoal de cada item de pedido.
+            soma += x.getSubTotal();
+        }
+        return soma;
     }
 
     @Override
