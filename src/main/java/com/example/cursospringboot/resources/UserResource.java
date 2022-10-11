@@ -43,6 +43,12 @@ public class UserResource {
         return ResponseEntity.created(uri).body(obj);
     }
 
+    @DeleteMapping(value = "/{id}")//annotation para deletar
+    public ResponseEntity<Void> delete(@PathVariable Long id){ //é void pois nao retorna nenhum corpo, simplismente deleta
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }
